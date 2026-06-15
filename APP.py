@@ -78,7 +78,7 @@ def df_a_str(df):
 with st.sidebar:
     st.markdown("## 📊 Analizadora de Datasets")
     st.markdown("**Renato Robello**")
-    st.markdown("*Diploma Business Analyst · 2025*")
+    st.markdown("*Diploma Business Analyst · 2026*")
     st.markdown("---")
 
     seccion = st.selectbox(
@@ -137,7 +137,7 @@ with st.sidebar:
 # ─────────────────────────────────────────────
 if seccion == "🏠 Home":
     st.title("📊 App Analizadora de Datasets con Streamlit")
-    st.markdown("### Renato Robello · Diploma Business Analyst · DMC Institute · 2025")
+    st.markdown("### Renato Robello · Diploma Business Analyst · DMC Institute · 2026")
     st.markdown("---")
 
     st.markdown(
