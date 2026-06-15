@@ -21,7 +21,6 @@ st.set_page_config(
 # ─────────────────────────────────────────────
 #  FUNCIONES UTILITARIAS
 # ─────────────────────────────────────────────
-st.cache_data
 def cargar_csv(archivo):
     try:
         df = pd.read_csv(archivo, low_memory=False)
