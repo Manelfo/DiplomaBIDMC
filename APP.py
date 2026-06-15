@@ -8,9 +8,7 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-# ─────────────────────────────────────────────
-#  CONFIGURACIÓN GENERAL
-# ─────────────────────────────────────────────
+
 st.set_page_config(
     page_title="App Analizadora de Datasets",
     page_icon="📊",
@@ -18,9 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ─────────────────────────────────────────────
-#  FUNCIONES UTILITARIAS
-# ─────────────────────────────────────────────
+
 def cargar_csv(archivo):
     try:
         df = pd.read_csv(archivo, low_memory=False)
@@ -74,9 +70,6 @@ def df_a_str(df):
     return df
 
 
-# ─────────────────────────────────────────────
-#  SIDEBAR
-# ─────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## 📊 Analizadora de Datasets")
     st.markdown("**Renato Robello**")
@@ -84,12 +77,12 @@ with st.sidebar:
     st.markdown("---")
 
     seccion = st.selectbox(
-        "📌 Navegar a:",
+        " Navegar a:",
         [
-            "🏠 Home",
-            "📂 Carga y Perfil del Dataset",
-            "⚙️ Procesamiento de Datos",
-            "📈 Análisis Visual",
+            " Home",
+            " Carga y Perfil del Dataset",
+            " Procesamiento de Datos",
+            " Análisis Visual",
         ],
     )
 
@@ -134,17 +127,14 @@ with st.sidebar:
     st.caption("DMC Institute · Python for Analytics")
 
 
-# ─────────────────────────────────────────────
-#  SECCIÓN 1: HOME
-# ─────────────────────────────────────────────
-if seccion == "🏠 Home":
-    st.title("📊 App Analizadora de Datasets con Streamlit")
+if seccion == " Home":
+    st.title(" App Analizadora de Datasets con Streamlit")
     st.markdown("### Renato Robello · Diploma Business Analyst · DMC Institute · 2025")
     st.markdown("---")
 
     st.markdown(
         """
-        ### 🎯 Objetivo del Proyecto
+        ###  Objetivo del Proyecto
         Esta aplicación interactiva permite **cargar, validar, procesar y visualizar** 
         cualquiera de los cuatro datasets propuestos, generando un análisis exploratorio 
         de datos (EDA) dinámico adaptable a diferentes estructuras.
@@ -161,10 +151,10 @@ if seccion == "🏠 Home":
     with col1:
         st.subheader("🗂️ Datasets Disponibles")
         datasets_info = {
-            "🤖 AI Impact on Jobs 2030": "3,000 filas · 20 cols. Mercado laboral e impacto de IA en empleos, salarios y demanda futura.",
-            "🏪 Superstore Sales": "10,194 filas · 21 cols. Ventas: pedidos, regiones, categorías, descuentos y utilidad.",
-            "🛒 E-commerce Risk": "12,000 filas · 23 cols. Pedidos con riesgo operativo, fraude y devoluciones.",
-            "🧠 Teen Mental Health": "1,200 filas · 13 cols. Hábitos digitales, sueño y bienestar en adolescentes.",
+            " AI Impact on Jobs 2030": "3,000 filas · 20 cols. Mercado laboral e impacto de IA en empleos, salarios y demanda futura.",
+            " Superstore Sales": "10,194 filas · 21 cols. Ventas: pedidos, regiones, categorías, descuentos y utilidad.",
+            " E-commerce Risk": "12,000 filas · 23 cols. Pedidos con riesgo operativo, fraude y devoluciones.",
+            " Teen Mental Health": "1,200 filas · 13 cols. Hábitos digitales, sueño y bienestar en adolescentes.",
         }
         for nombre, desc in datasets_info.items():
             with st.expander(nombre):
@@ -189,20 +179,16 @@ if seccion == "🏠 Home":
     st.subheader("🔄 Flujo de la Aplicación")
     cols = st.columns(4)
     pasos = [
-        ("📂", "1. Cargar", "Sube tu CSV o elige un dataset"),
-        ("⚙️", "2. Procesar", "Limpieza y validación"),
-        ("📈", "3. Visualizar", "Gráficos interactivos"),
-        ("💡", "4. Insights", "Hallazgos para decisiones"),
+        ("", "1. Cargar", "Sube tu CSV o elige un dataset"),
+        ("", "2. Procesar", "Limpieza y validación"),
+        ("", "3. Visualizar", "Gráficos interactivos"),
+        ("", "4. Insights", "Hallazgos para decisiones"),
     ]
     for col, (icon, titulo, desc) in zip(cols, pasos):
         with col:
             st.markdown(f"### {icon} {titulo}")
             st.caption(desc)
 
-
-# ─────────────────────────────────────────────
-#  SECCIÓN 2: CARGA Y PERFIL
-# ─────────────────────────────────────────────
 elif seccion == "📂 Carga y Perfil del Dataset":
     st.title("📂 Carga y Perfil del Dataset")
 
@@ -261,10 +247,6 @@ elif seccion == "📂 Carga y Perfil del Dataset":
     if cols_selec:
         st.dataframe(df_a_str(df[cols_selec].head(20)), width='stretch')
 
-
-# ─────────────────────────────────────────────
-#  SECCIÓN 3: PROCESAMIENTO
-# ─────────────────────────────────────────────
 elif seccion == "⚙️ Procesamiento de Datos":
     st.title("⚙️ Procesamiento de Datos")
 
@@ -350,10 +332,6 @@ elif seccion == "⚙️ Procesamiento de Datos":
     st.session_state["bin_cols"] = bin_cols
     st.session_state["date_cols"] = date_cols
 
-
-# ─────────────────────────────────────────────
-#  SECCIÓN 4: ANÁLISIS VISUAL
-# ─────────────────────────────────────────────
 elif seccion == "📈 Análisis Visual":
     st.title("📈 Análisis Visual")
 
@@ -375,7 +353,6 @@ elif seccion == "📈 Análisis Visual":
 
     tabs = st.tabs(["📋 Resumen", "📊 Univariado", "🔗 Bivariado", "🌐 Multivariado", "📅 Temporal", "💡 Insights"])
 
-    # ── TAB 1: RESUMEN ──
     with tabs[0]:
         st.subheader("📋 Resumen del Dataset")
         c1, c2, c3, c4 = st.columns(4)
@@ -408,7 +385,6 @@ elif seccion == "📈 Análisis Visual":
             desc = df[num_puras].describe().T.round(3)
             st.dataframe(desc, width='stretch')
 
-    # ── TAB 2: UNIVARIADO ──
     with tabs[1]:
         st.subheader("📊 Análisis Univariado")
         col_izq, col_der = st.columns(2)
@@ -460,7 +436,6 @@ elif seccion == "📈 Análisis Visual":
                 plt.tight_layout()
                 st.pyplot(fig_sns)
 
-    # ── TAB 3: BIVARIADO ──
     with tabs[2]:
         st.subheader("🔗 Análisis Bivariado")
         tipo_biv = st.selectbox("Tipo:", [
@@ -518,7 +493,6 @@ elif seccion == "📈 Análisis Visual":
             else:
                 st.info("Se necesitan ≥2 variables categóricas.")
 
-    # ── TAB 4: MULTIVARIADO ──
     with tabs[3]:
         st.subheader("🌐 Análisis Multivariado")
         sub = st.radio("Análisis:", ["Heatmap de Correlación", "Barras Apiladas", "Scatter 3D"], horizontal=True)
@@ -571,7 +545,6 @@ elif seccion == "📈 Análisis Visual":
             else:
                 st.info("Se necesitan ≥3 variables numéricas.")
 
-    # ── TAB 5: TEMPORAL ──
     with tabs[4]:
         st.subheader("📅 Análisis Temporal")
         posibles_fechas = date_cols if date_cols else [c for c in df.columns if "date" in c or "time" in c]
@@ -610,7 +583,6 @@ elif seccion == "📈 Análisis Visual":
                                      title=f"{cat_temp} a lo largo del tiempo", markers=True)
                     st.plotly_chart(fig_tc, width='stretch')
 
-    # ── TAB 6: INSIGHTS ──
     with tabs[5]:
         st.subheader("💡 Insights y Hallazgos Clave")
         nombre_ds = st.session_state.get("nombre_dataset", "Dataset cargado")
